@@ -1,62 +1,59 @@
-import { DemoResponse } from "@shared/api";
-import { useEffect, useState } from "react";
+import ConnectWalletButton from "@/components/wallet/ConnectWalletButton";
+import AccountInfo from "@/components/wallet/AccountInfo";
 
 export default function Index() {
-  const [exampleFromServer, setExampleFromServer] = useState("");
-  // Fetch users on component mount
-  useEffect(() => {
-    fetchDemo();
-  }, []);
-
-  // Example of how to fetch data from the server (if needed)
-  const fetchDemo = async () => {
-    try {
-      const response = await fetch("/api/demo");
-      const data = (await response.json()) as DemoResponse;
-      setExampleFromServer(data.message);
-    } catch (error) {
-      console.error("Error fetching hello:", error);
-    }
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-      <div className="text-center">
-        {/* TODO: FUSION_GENERATION_APP_PLACEHOLDER replace everything here with the actual app! */}
-        <h1 className="text-2xl font-semibold text-slate-800 flex items-center justify-center gap-3">
-          <svg
-            className="animate-spin h-8 w-8 text-slate-400"
-            viewBox="0 0 50 50"
-          >
-            <circle
-              className="opacity-30"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-            />
-            <circle
-              className="text-slate-600"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-              strokeDasharray="100"
-              strokeDashoffset="75"
-            />
-          </svg>
-          Generating your app...
-        </h1>
-        <p className="mt-4 text-slate-600 max-w-md">
-          Watch the chat on the left for updates that might need your attention
-          to finish generating
-        </p>
-        <p className="mt-4 hidden max-w-md">{exampleFromServer}</p>
+    <section className="relative overflow-hidden">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_75%_10%,hsl(var(--brand)/0.25)_0%,transparent_60%),radial-gradient(40%_40%_at_30%_90%,hsl(var(--primary)/0.20)_0%,transparent_70%)]" />
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+              <span className="h-2 w-2 rounded-full bg-brand animate-pulse" />
+              Live on Sui Testnet
+            </span>
+            <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
+              Connect your wallet on Sui
+            </h1>
+            <p className="mt-4 max-w-prose text-base leading-relaxed text-muted-foreground">
+              A modern, production‑ready starter focused on the Sui network. Connect your wallet securely,
+              view your SUI balance, and start building rich on‑chain experiences.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <ConnectWalletButton size="lg" />
+              <a
+                href="https://docs.sui.io/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-foreground/80 hover:text-primary transition-colors"
+              >
+                Learn about Sui →
+              </a>
+            </div>
+            <AccountInfo />
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-tr from-brand/20 to-primary/20 blur-2xl" />
+            <div className="rounded-3xl border border-border bg-card/60 p-6 shadow-sm backdrop-blur">
+              <div className="aspect-[4/3] w-full rounded-xl bg-gradient-to-br from-background to-muted/60 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="mx-auto mb-3 h-14 w-14 rounded-xl bg-gradient-to-br from-brand to-primary text-white grid place-content-center shadow-md">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 3c5 0 9 4 9 9s-4 9-9 9S3 17 3 12 7 3 12 3Z" fill="currentColor" opacity=".1"/>
+                      <path d="M7 13.5c1.5-2.5 3.5-5 5-5s3.5 2.5 5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+                      <path d="M9 15.5c.9-1.5 2.1-3 3-3s2.1 1.5 3 3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground">Sui‑ready UI</h3>
+                  <p className="mt-2 max-w-xs text-sm text-muted-foreground">
+                    Styled components, responsive layout, and wallet connectivity out-of-the-box.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
