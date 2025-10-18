@@ -3,8 +3,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
-import { useCurrentAccount } from "@mysten/dapp-kit";
+import { useCurrentAccount, useSuiClientContext } from "@mysten/dapp-kit";
 import { Link } from "react-router-dom";
+import { SUI_PACKAGES } from "@/lib/env";
 
 function parseSui(value: string) {
   const n = Number(value);
