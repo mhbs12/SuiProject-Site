@@ -29,7 +29,7 @@ export default function Index() {
               efeitos suaves e performance.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
-              <ConnectWalletButton size="lg" />
+              {!connected ? <ConnectWalletButton size="lg" /> : null}
               <a
                 href="https://docs.sui.io/"
                 target="_blank"
