@@ -83,6 +83,30 @@ export default function Index() {
             </div>
           </div>
         </div>
+        <div className="mt-16">
+          <h2 className="text-xl font-semibold text-foreground">Games</h2>
+          <p className="mt-1 text-sm text-muted-foreground">Choose a game to start playing with SUI stakes.</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <a href="/tictactoe" className="group rounded-xl border border-border bg-card/60 p-5 backdrop-blur transition hover:border-primary/40 hover:shadow-sm">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">TicTacToe</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">Play head‑to‑head. Create or join a room with SUI stakes.</p>
+                </div>
+                <span className="rounded-md bg-primary/10 px-2 py-1 text-xs text-primary">Live</span>
+              </div>
+            </a>
+            <div className="rounded-xl border border-border bg-card/60 p-5 opacity-60">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-semibold text-foreground">Chess</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">Coming soon</p>
+                </div>
+                <span className="rounded-md bg-muted px-2 py-1 text-xs text-foreground/70">Coming soon</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
