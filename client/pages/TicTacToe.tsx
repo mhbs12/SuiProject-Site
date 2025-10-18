@@ -48,6 +48,9 @@ export default function TicTacToePage() {
     toast({ title: "Joining room", description: `ID: ${joinId} • Stake: ${amt} SUI` });
   };
 
+  const { network } = useSuiClientContext();
+  const pkg = network === "mainnet" ? SUI_PACKAGES.mainnet : SUI_PACKAGES.testnet;
+
   return (
     <section className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
@@ -55,6 +58,11 @@ export default function TicTacToePage() {
           <div>
             <h1 className="text-3xl font-bold tracking-tight">TicTacToe</h1>
             <p className="mt-2 text-sm text-muted-foreground">Create a room and set a stake in SUI, or join an existing room with its ID.</p>
+            <div className="mt-3 inline-flex items-center gap-2 rounded-md border border-border bg-background/60 px-3 py-1 text-xs">
+              <span className="rounded-sm bg-primary/10 px-2 py-0.5 text-primary">{network}</span>
+              <span className="text-foreground/70">Package:</span>
+              <code className="font-mono text-foreground/80">{pkg || "not set"}</code>
+            </div>
           </div>
           <Link to="/" className="text-sm text-foreground/70 hover:text-primary">← Back to games</Link>
         </div>
