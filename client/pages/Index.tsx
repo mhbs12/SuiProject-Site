@@ -4,7 +4,10 @@ import AccountInfo from "@/components/wallet/AccountInfo";
 export default function Index() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_75%_10%,hsl(var(--brand)/0.25)_0%,transparent_60%),radial-gradient(40%_40%_at_30%_90%,hsl(var(--primary)/0.20)_0%,transparent_70%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_75%_10%,hsl(var(--brand)/0.25)_0%,transparent_60%),radial-gradient(40%_40%_at_30%_90%,hsl(var(--primary)/0.18)_0%,transparent_70%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,transparent_0,rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(to_bottom,transparent_0,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="absolute -top-24 -right-24 -z-10 h-72 w-72 rounded-full bg-brand/20 blur-3xl animate-float" />
+      <div className="absolute -bottom-24 -left-24 -z-10 h-80 w-80 rounded-full bg-primary/20 blur-3xl animate-float-slow" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
           <div>
@@ -13,11 +16,10 @@ export default function Index() {
               Live on Sui Testnet
             </span>
             <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
-              Connect your wallet on Sui
+              <span className="bg-gradient-to-br from-brand to-primary bg-clip-text text-transparent">SuiGameCenter</span>
             </h1>
             <p className="mt-4 max-w-prose text-base leading-relaxed text-muted-foreground">
-              A modern, production‑ready starter focused on the Sui network. Connect your wallet securely,
-              view your SUI balance, and start building rich on‑chain experiences.
+              Plataforma minimalista com a cara da rede SUI. Conecte sua carteira, gerencie seus ativos e jogue experiências on‑chain com efeitos suaves e performance.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <ConnectWalletButton size="lg" />
@@ -44,9 +46,9 @@ export default function Index() {
                       <path d="M9 15.5c.9-1.5 2.1-3 3-3s2.1 1.5 3 3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground">Sui‑ready UI</h3>
+                  <h3 className="text-lg font-semibold text-foreground">Minimal & SUI‑like</h3>
                   <p className="mt-2 max-w-xs text-sm text-muted-foreground">
-                    Styled components, responsive layout, and wallet connectivity out-of-the-box.
+                    UI limpa, responsiva e com conectividade de carteira pronta para uso.
                   </p>
                 </div>
               </div>
