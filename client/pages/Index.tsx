@@ -1,7 +1,10 @@
 import ConnectWalletButton from "@/components/wallet/ConnectWalletButton";
 import AccountInfo from "@/components/wallet/AccountInfo";
+import { useCurrentAccount } from "@mysten/dapp-kit";
 
 export default function Index() {
+  const account = useCurrentAccount();
+  const connected = Boolean(account?.address);
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_75%_10%,hsl(var(--brand)/0.25)_0%,transparent_60%),radial-gradient(40%_40%_at_30%_90%,hsl(var(--primary)/0.18)_0%,transparent_70%)]" />
