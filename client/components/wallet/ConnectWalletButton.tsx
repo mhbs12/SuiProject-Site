@@ -8,11 +8,7 @@ interface Props {
 
 export default function ConnectWalletButton({ className, size = "md" }: Props) {
   const sizing =
-    size === "sm"
-      ? "text-sm"
-      : size === "lg"
-        ? "text-base"
-        : "text-sm";
+    size === "sm" ? "text-sm" : size === "lg" ? "text-base" : "text-sm";
 
   return (
     <ConnectButton

@@ -16,10 +16,14 @@ export default function Index() {
               Live on Sui Testnet
             </span>
             <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
-              <span className="bg-gradient-to-br from-brand to-primary bg-clip-text text-transparent">SuiGameCenter</span>
+              <span className="bg-gradient-to-br from-brand to-primary bg-clip-text text-transparent">
+                SuiGameCenter
+              </span>
             </h1>
             <p className="mt-4 max-w-prose text-base leading-relaxed text-muted-foreground">
-              Plataforma minimalista com a cara da rede SUI. Conecte sua carteira, gerencie seus ativos e jogue experiências on‑chain com efeitos suaves e performance.
+              Plataforma minimalista com a cara da rede SUI. Conecte sua
+              carteira, gerencie seus ativos e jogue experiências on‑chain com
+              efeitos suaves e performance.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <ConnectWalletButton size="lg" />
@@ -40,15 +44,38 @@ export default function Index() {
               <div className="aspect-[4/3] w-full rounded-xl bg-gradient-to-br from-background to-muted/60 flex items-center justify-center">
                 <div className="text-center">
                   <div className="mx-auto mb-3 h-14 w-14 rounded-xl bg-gradient-to-br from-brand to-primary text-white grid place-content-center shadow-md">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 3c5 0 9 4 9 9s-4 9-9 9S3 17 3 12 7 3 12 3Z" fill="currentColor" opacity=".1"/>
-                      <path d="M7 13.5c1.5-2.5 3.5-5 5-5s3.5 2.5 5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
-                      <path d="M9 15.5c.9-1.5 2.1-3 3-3s2.1 1.5 3 3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 3c5 0 9 4 9 9s-4 9-9 9S3 17 3 12 7 3 12 3Z"
+                        fill="currentColor"
+                        opacity=".1"
+                      />
+                      <path
+                        d="M7 13.5c1.5-2.5 3.5-5 5-5s3.5 2.5 5 5"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                      />
+                      <path
+                        d="M9 15.5c.9-1.5 2.1-3 3-3s2.1 1.5 3 3"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                      />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-foreground">Minimal & SUI‑like</h3>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    Minimal & SUI‑like
+                  </h3>
                   <p className="mt-2 max-w-xs text-sm text-muted-foreground">
-                    UI limpa, responsiva e com conectividade de carteira pronta para uso.
+                    UI limpa, responsiva e com conectividade de carteira pronta
+                    para uso.
                   </p>
                 </div>
               </div>

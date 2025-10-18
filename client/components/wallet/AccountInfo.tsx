@@ -2,7 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useCurrentAccount, useSuiClient } from "@mysten/dapp-kit";
 
 function shortAddress(addr: string, chars = 6) {
-  return addr.length > 12 ? `${addr.slice(0, chars)}…${addr.slice(-chars)}` : addr;
+  return addr.length > 12
+    ? `${addr.slice(0, chars)}…${addr.slice(-chars)}`
+    : addr;
 }
 
 export default function AccountInfo() {
@@ -19,8 +21,16 @@ export default function AccountInfo() {
         return;
       }
       try {
-        const res = await client.getBalance({ owner, coinType: "0x2::sui::SUI" });
-        if (!cancelled) setBalance((Number(res.totalBalance) / 1e9).toLocaleString(undefined, { maximumFractionDigits: 4 }) + " SUI");
+        const res = await client.getBalance({
+          owner,
+          coinType: "0x2::sui::SUI",
+        });
+        if (!cancelled)
+          setBalance(
+            (Number(res.totalBalance) / 1e9).toLocaleString(undefined, {
+              maximumFractionDigits: 4,
+            }) + " SUI",
+          );
       } catch (e) {
         if (!cancelled) setBalance("—");
       }
@@ -41,12 +51,18 @@ export default function AccountInfo() {
     <div className="mt-6 w-full max-w-xl rounded-lg border border-border bg-card/60 backdrop-blur p-4 text-sm text-muted-foreground">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-1">
-          <p className="text-xs uppercase tracking-wide text-foreground/70">Connected account</p>
+          <p className="text-xs uppercase tracking-wide text-foreground/70">
+            Connected account
+          </p>
           <p className="font-mono text-foreground">{shortAddress(owner!)}</p>
         </div>
         <div className="space-y-1 text-right">
-          <p className="text-xs uppercase tracking-wide text-foreground/70">SUI Balance</p>
-          <p className="font-semibold text-foreground">{balance ?? "Loading…"}</p>
+          <p className="text-xs uppercase tracking-wide text-foreground/70">
+            SUI Balance
+          </p>
+          <p className="font-semibold text-foreground">
+            {balance ?? "Loading…"}
+          </p>
         </div>
       </div>
     </div>
