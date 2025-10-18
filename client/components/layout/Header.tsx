@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import ConnectWalletButton from "@/components/wallet/ConnectWalletButton";
+import { useCurrentAccount } from "@mysten/dapp-kit";
 
 export default function Header() {
+  const account = useCurrentAccount();
+  const connected = Boolean(account?.address);
+
   return (
     <header className="sticky top-0 z-30 w-full border-b border-border/60 bg-background/75 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -14,7 +18,7 @@ export default function Header() {
           </span>
         </Link>
         <nav className="flex items-center gap-2">
-          <ConnectWalletButton />
+          {connected ? <ConnectWalletButton /> : null}
         </nav>
       </div>
     </header>
