@@ -24,9 +24,7 @@ export default function Index() {
               </span>
             </h1>
             <p className="mt-4 max-w-prose text-base leading-relaxed text-muted-foreground">
-              Plataforma minimalista com a cara da rede SUI. Conecte sua
-              carteira, gerencie seus ativos e jogue experiências on‑chain com
-              efeitos suaves e performance.
+              A minimal, SUI‑inspired platform. Connect your wallet, manage your assets, and play on‑chain experiences with smooth effects and performance.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               {!connected ? <ConnectWalletButton size="lg" /> : null}
