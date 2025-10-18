@@ -41,4 +41,16 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+import type { Root } from "react-dom/client";
+
+declare global {
+  interface Window {
+    __fusion_root?: Root;
+  }
+}
+
+const container = document.getElementById("root")!;
+if (!window.__fusion_root) {
+  window.__fusion_root = createRoot(container);
+}
+window.__fusion_root.render(<App />);
