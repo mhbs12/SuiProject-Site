@@ -30,6 +30,7 @@ export default function Index() {
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               {!connected ? <ConnectWalletButton size="lg" /> : null}
+              <MintOgNftButton size="lg" />
               <a
                 href="https://docs.sui.io/"
                 target="_blank"
