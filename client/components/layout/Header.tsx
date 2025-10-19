@@ -26,6 +26,7 @@ export default function Header() {
           <div className="hidden sm:block">
             <NetworkToggle />
           </div>
+          <MintOgNftButton className="hidden sm:inline-flex" />
           {connected ? <ConnectWalletButton /> : null}
         </nav>
       </div>
