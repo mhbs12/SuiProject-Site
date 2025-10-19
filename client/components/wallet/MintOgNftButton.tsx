@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import {
   useCurrentAccount,
   useSuiClientContext,
-  useSignAndExecuteTransactionBlock,
+  useSignAndExecuteTransaction,
 } from "@mysten/dapp-kit";
 import { SUI_PACKAGES, MINT_REGISTRY } from "@/lib/env";
 import { toast } from "@/hooks/use-toast";
@@ -16,7 +16,7 @@ interface Props {
 export default function MintOgNftButton({ className, size = "md" }: Props) {
   const account = useCurrentAccount();
   const { network } = useSuiClientContext();
-  const { mutateAsync: signAndExecute } = useSignAndExecuteTransactionBlock();
+  const { mutateAsync: signAndExecute } = useSignAndExecuteTransaction();
   const connected = Boolean(account?.address);
   const pkg =
     network === "mainnet" ? SUI_PACKAGES.mainnet : SUI_PACKAGES.testnet;
@@ -53,7 +53,7 @@ export default function MintOgNftButton({ className, size = "md" }: Props) {
         arguments: [tx.object(registry)],
       });
 
-      const res = await signAndExecute({ transactionBlock: tx });
+      const res = await signAndExecute({ transaction: tx });
       toast({
         title: "Mint submitted",
         description: `Digest: ${res?.digest ?? "—"}`,
