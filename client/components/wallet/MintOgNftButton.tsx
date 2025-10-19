@@ -6,7 +6,7 @@ import {
 } from "@mysten/dapp-kit";
 import { SUI_PACKAGES, MINT_REGISTRY } from "@/lib/env";
 import { toast } from "@/hooks/use-toast";
-import { TransactionBlock } from "@mysten/sui/transactions";
+import { Transaction } from "@mysten/sui/transactions";
 
 interface Props {
   className?: string;
