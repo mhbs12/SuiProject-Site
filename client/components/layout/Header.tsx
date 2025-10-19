@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import ConnectWalletButton from "@/components/wallet/ConnectWalletButton";
 import NetworkToggle from "@/components/wallet/NetworkToggle";
-import MintOgNftButton from "@/components/wallet/MintOgNftButton";
 import { useCurrentAccount } from "@mysten/dapp-kit";
 
 export default function Header() {
@@ -26,7 +25,6 @@ export default function Header() {
           <div className="hidden sm:block">
             <NetworkToggle />
           </div>
-          <MintOgNftButton className="hidden sm:inline-flex" />
           {connected ? <ConnectWalletButton /> : null}
         </nav>
       </div>
