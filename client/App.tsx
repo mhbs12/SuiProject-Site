@@ -12,7 +12,7 @@ import NotFound from "./pages/NotFound";
 import TicTacToe from "./pages/TicTacToe";
 import Layout from "@/components/layout/Layout";
 import { SuiClientProvider, WalletProvider } from "@mysten/dapp-kit";
-import { getFullnodeUrl } from "@mysten/sui.js/client";
+import { getFullnodeUrl } from "@mysten/sui/client";
 
 const queryClient = new QueryClient();
 
