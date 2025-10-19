@@ -1,6 +1,7 @@
 import ConnectWalletButton from "@/components/wallet/ConnectWalletButton";
 import AccountInfo from "@/components/wallet/AccountInfo";
 import { useCurrentAccount } from "@mysten/dapp-kit";
+import MintOgNftButton from "@/components/wallet/MintOgNftButton";
 
 export default function Index() {
   const account = useCurrentAccount();
