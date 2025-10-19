@@ -3,7 +3,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
-import { useCurrentAccount, useSuiClientContext, useSignAndExecuteTransaction } from "@mysten/dapp-kit";
+import {
+  useCurrentAccount,
+  useSuiClientContext,
+  useSignAndExecuteTransaction,
+} from "@mysten/dapp-kit";
 import { Link } from "react-router-dom";
 import { SUI_PACKAGES, PLAYER_REGISTRY } from "@/lib/env";
 import { Transaction } from "@mysten/sui/transactions";
@@ -21,8 +25,10 @@ export default function TicTacToePage() {
   const [createAmount, setCreateAmount] = useState("");
   const { mutateAsync: signAndExecute } = useSignAndExecuteTransaction();
   const { network } = useSuiClientContext();
-  const pkg = network === "mainnet" ? SUI_PACKAGES.mainnet : SUI_PACKAGES.testnet;
-  const playerRegistry = network === "mainnet" ? PLAYER_REGISTRY.mainnet : PLAYER_REGISTRY.testnet;
+  const pkg =
+    network === "mainnet" ? SUI_PACKAGES.mainnet : SUI_PACKAGES.testnet;
+  const playerRegistry =
+    network === "mainnet" ? PLAYER_REGISTRY.mainnet : PLAYER_REGISTRY.testnet;
   const [joinAmount, setJoinAmount] = useState("");
   const [joinId, setJoinId] = useState("");
 
@@ -37,7 +43,10 @@ export default function TicTacToePage() {
       return;
     }
     if (!pkg || !playerRegistry) {
-      toast({ title: "Missing env", description: "Set package and PLAYER_REGISTRY IDs for current network." });
+      toast({
+        title: "Missing env",
+        description: "Set package and PLAYER_REGISTRY IDs for current network.",
+      });
       return;
     }
 
@@ -50,7 +59,10 @@ export default function TicTacToePage() {
         arguments: [stakeCoin, tx.pure(mist), tx.object(playerRegistry)],
       });
       const res = await signAndExecute({ transaction: tx });
-      toast({ title: "Room created", description: `Digest: ${res?.digest ?? "—"}` });
+      toast({
+        title: "Room created",
+        description: `Digest: ${res?.digest ?? "—"}`,
+      });
     } catch (e: any) {
       toast({ title: "Create failed", description: String(e?.message ?? e) });
     }
