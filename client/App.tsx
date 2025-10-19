@@ -11,7 +11,11 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import TicTacToe from "./pages/TicTacToe";
 import Layout from "@/components/layout/Layout";
-import { SuiClientProvider, WalletProvider, useSuiClientContext } from "@mysten/dapp-kit";
+import {
+  SuiClientProvider,
+  WalletProvider,
+  useSuiClientContext,
+} from "@mysten/dapp-kit";
 import { getFullnodeUrl } from "@mysten/sui/client";
 import { useEffect } from "react";
 
@@ -26,7 +30,11 @@ function NetworkPersistor() {
   const { network, selectNetwork } = useSuiClientContext();
   useEffect(() => {
     const saved = localStorage.getItem("sui.network");
-    if (saved && saved !== network && (saved === "mainnet" || saved === "testnet")) {
+    if (
+      saved &&
+      saved !== network &&
+      (saved === "mainnet" || saved === "testnet")
+    ) {
       selectNetwork(saved);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,7 +47,10 @@ function NetworkPersistor() {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <SuiClientProvider networks={networks} defaultNetwork={(localStorage.getItem("sui.network") as any) || "testnet"}>
+    <SuiClientProvider
+      networks={networks}
+      defaultNetwork={(localStorage.getItem("sui.network") as any) || "testnet"}
+    >
       <WalletProvider autoConnect>
         <NetworkPersistor />
         <TooltipProvider>
