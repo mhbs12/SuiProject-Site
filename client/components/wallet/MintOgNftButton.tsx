@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { useCurrentAccount, useSuiClientContext } from "@mysten/dapp-kit";
-import { SUI_PACKAGES } from "@/lib/env";
+import { useCurrentAccount, useSuiClientContext, useSignAndExecuteTransaction } from "@mysten/dapp-kit";
+import { SUI_PACKAGES, MINT_REGISTRY } from "@/lib/env";
 import { toast } from "@/hooks/use-toast";
+import { TransactionBlock } from "@mysten/sui.js/transactions";
 
 interface Props {
   className?: string;
@@ -11,13 +12,15 @@ interface Props {
 export default function MintOgNftButton({ className, size = "md" }: Props) {
   const account = useCurrentAccount();
   const { network } = useSuiClientContext();
+  const { mutateAsync: signAndExecute } = useSignAndExecuteTransaction();
   const connected = Boolean(account?.address);
   const pkg = network === "mainnet" ? SUI_PACKAGES.mainnet : SUI_PACKAGES.testnet;
+  const registry = network === "mainnet" ? MINT_REGISTRY.mainnet : MINT_REGISTRY.testnet;
 
-  const disabled = !connected || !pkg;
+  const disabled = !connected || !pkg || !registry;
   const label = "Mint OG NFT";
 
-  const onClick = () => {
+  const onClick = async () => {
     if (!connected) {
       toast({ title: "Connect your wallet to mint" });
       return;
@@ -26,8 +29,23 @@ export default function MintOgNftButton({ className, size = "md" }: Props) {
       toast({ title: "Package ID not set", description: `Set VITE_SUI_PACKAGE_${network.toUpperCase()} in envs.` });
       return;
     }
-    // Placeholder action: inform mint flow entry.
-    toast({ title: "Mint flow ready", description: `Using package: ${pkg}` });
+    if (!registry) {
+      toast({ title: "MintRegistry ID not set", description: `Set VITE_MINT_REGISTRY_${network.toUpperCase()} in envs.` });
+      return;
+    }
+
+    try {
+      const tx = new TransactionBlock();
+      tx.moveCall({
+        target: `${pkg}::og_nft::mint_og`,
+        arguments: [tx.object(registry)],
+      });
+
+      const res = await signAndExecute({ transactionBlock: tx });
+      toast({ title: "Mint submitted", description: `Digest: ${res?.digest ?? "—"}` });
+    } catch (e: any) {
+      toast({ title: "Mint failed", description: String(e?.message ?? e) });
+    }
   };
 
   return (
