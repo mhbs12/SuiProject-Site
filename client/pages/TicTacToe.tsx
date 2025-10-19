@@ -3,9 +3,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
-import { useCurrentAccount, useSuiClientContext } from "@mysten/dapp-kit";
+import { useCurrentAccount, useSuiClientContext, useSignAndExecuteTransaction } from "@mysten/dapp-kit";
 import { Link } from "react-router-dom";
-import { SUI_PACKAGES } from "@/lib/env";
+import { SUI_PACKAGES, PLAYER_REGISTRY } from "@/lib/env";
+import { Transaction } from "@mysten/sui/transactions";
 
 function parseSui(value: string) {
   const n = Number(value);
@@ -18,10 +19,14 @@ export default function TicTacToePage() {
   const connected = Boolean(account?.address);
 
   const [createAmount, setCreateAmount] = useState("");
+  const { mutateAsync: signAndExecute } = useSignAndExecuteTransaction();
+  const { network } = useSuiClientContext();
+  const pkg = network === "mainnet" ? SUI_PACKAGES.mainnet : SUI_PACKAGES.testnet;
+  const playerRegistry = network === "mainnet" ? PLAYER_REGISTRY.mainnet : PLAYER_REGISTRY.testnet;
   const [joinAmount, setJoinAmount] = useState("");
   const [joinId, setJoinId] = useState("");
 
-  const onCreate = () => {
+  const onCreate = async () => {
     if (!connected) {
       toast({ title: "Connect your wallet first" });
       return;
@@ -31,11 +36,24 @@ export default function TicTacToePage() {
       toast({ title: "Enter a valid SUI amount (> 0)" });
       return;
     }
-    const roomId = Math.random().toString(36).slice(2, 10);
-    toast({
-      title: "Room created",
-      description: `ID: ${roomId} • Stake: ${amt} SUI`,
-    });
+    if (!pkg || !playerRegistry) {
+      toast({ title: "Missing env", description: "Set package and PLAYER_REGISTRY IDs for current network." });
+      return;
+    }
+
+    try {
+      const mist = BigInt(Math.floor(amt * 1e9));
+      const tx = new Transaction();
+      const [stakeCoin] = tx.splitCoins(tx.gas, [mist]);
+      tx.moveCall({
+        target: `${pkg}::ttt::start_bttt`,
+        arguments: [stakeCoin, tx.pure(mist), tx.object(playerRegistry)],
+      });
+      const res = await signAndExecute({ transaction: tx });
+      toast({ title: "Room created", description: `Digest: ${res?.digest ?? "—"}` });
+    } catch (e: any) {
+      toast({ title: "Create failed", description: String(e?.message ?? e) });
+    }
   };
 
   const onJoin = () => {
@@ -54,10 +72,6 @@ export default function TicTacToePage() {
     });
   };
 
-  const { network } = useSuiClientContext();
-  const pkg =
-    network === "mainnet" ? SUI_PACKAGES.mainnet : SUI_PACKAGES.testnet;
-
   return (
     <section className="relative py-14 sm:py-20">
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
@@ -68,15 +82,6 @@ export default function TicTacToePage() {
               Create a room and set a stake in SUI, or join an existing room
               with its ID.
             </p>
-            <div className="mt-3 inline-flex items-center gap-2 rounded-md border border-border bg-background/60 px-3 py-1 text-xs">
-              <span className="rounded-sm bg-primary/10 px-2 py-0.5 text-primary">
-                {network}
-              </span>
-              <span className="text-foreground/70">Package:</span>
-              <code className="font-mono text-foreground/80">
-                {pkg || "not set"}
-              </code>
-            </div>
           </div>
           <Link
             to="/"
