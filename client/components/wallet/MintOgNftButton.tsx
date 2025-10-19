@@ -47,7 +47,7 @@ export default function MintOgNftButton({ className, size = "md" }: Props) {
     }
 
     try {
-      const tx = new TransactionBlock();
+      const tx = new Transaction();
       tx.moveCall({
         target: `${pkg}::og_nft::mint_og`,
         arguments: [tx.object(registry)],
