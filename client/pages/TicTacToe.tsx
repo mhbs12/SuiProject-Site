@@ -68,10 +68,18 @@ export default function TicTacToePage() {
         arguments: [stakeCoin, tx.pure.u64(mist), tx.object(playerRegistry)],
       });
       const res = await signAndExecute({ transaction: tx });
-      toast({
-        title: "Room created",
-        description: `Digest: ${res?.digest ?? "—"}`,
+      const id = res?.digest ?? `${Date.now()}`;
+      addRoom(network as NetworkName, {
+        id,
+        name: createName.trim(),
+        stakeMist: String(mist),
+        creator: account!.address,
+        network: network as NetworkName,
+        status: "waiting",
+        createdAt: Date.now(),
+        txDigest: res?.digest,
       });
+      navigate(`/tictactoe/wait/${encodeURIComponent(id)}`);
     } catch (e: any) {
       toast({ title: "Create failed", description: String(e?.message ?? e) });
     }
