@@ -8,7 +8,7 @@ import {
   useSuiClientContext,
   useSignAndExecuteTransaction,
 } from "@mysten/dapp-kit";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SUI_PACKAGES, PLAYER_REGISTRY } from "@/lib/env";
 import { Transaction } from "@mysten/sui/transactions";
 
