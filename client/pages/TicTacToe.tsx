@@ -32,7 +32,9 @@ export default function TicTacToePage() {
     network === "mainnet" ? SUI_PACKAGES.mainnet : SUI_PACKAGES.testnet;
   const playerRegistry =
     network === "mainnet" ? PLAYER_REGISTRY.mainnet : PLAYER_REGISTRY.testnet;
+  const [joinName, setJoinName] = useState("");
   const [joinAmount, setJoinAmount] = useState("");
+  const rooms = useMemo(() => getRooms(network as NetworkName), [network]);
   const [joinId, setJoinId] = useState("");
 
   const onCreate = async () => {
