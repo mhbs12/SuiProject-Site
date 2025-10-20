@@ -10,6 +10,7 @@ import {
 } from "@mysten/dapp-kit";
 import { Link, useNavigate } from "react-router-dom";
 import { SUI_PACKAGES, PLAYER_REGISTRY } from "@/lib/env";
+import { addRoom, getRooms, NetworkName } from "@/lib/rooms";
 import { Transaction } from "@mysten/sui/transactions";
 
 function parseSui(value: string) {
