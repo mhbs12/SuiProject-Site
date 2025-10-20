@@ -183,6 +183,26 @@ export default function TicTacToePage() {
             </div>
           </div>
         </div>
+        <div className="mt-10 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur">
+          <h2 className="text-lg font-semibold">Available rooms</h2>
+          <p className="mt-1 text-sm text-muted-foreground">Recently created rooms on this device for {network}.</p>
+          <div className="mt-4 grid gap-3">
+            {rooms.length === 0 && (
+              <p className="text-sm text-muted-foreground">No rooms yet. Create one to get started.</p>
+            )}
+            {rooms.map((r) => (
+              <div key={r.id} className="flex items-center justify-between rounded-md border border-border/60 bg-background/60 p-3">
+                <div className="min-w-0">
+                  <p className="truncate font-medium text-foreground">{r.name}</p>
+                  <p className="truncate text-xs text-muted-foreground">Stake: {(Number(r.stakeMist) / 1e9).toLocaleString(undefined,{maximumFractionDigits:4})} SUI • ID: <code className="font-mono">{r.id}</code></p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button size="sm" variant="ghost" onClick={() => navigate(`/tictactoe/wait/${encodeURIComponent(r.id)}`)}>Open</Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
