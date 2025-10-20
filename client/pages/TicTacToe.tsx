@@ -124,6 +124,10 @@ export default function TicTacToePage() {
             </p>
             <div className="mt-4 space-y-3">
               <div className="space-y-2">
+                <Label htmlFor="create-name">Room name</Label>
+                <Input id="create-name" placeholder="e.g. pro-match-1" value={createName} onChange={(e) => setCreateName(e.target.value)} />
+              </div>
+              <div className="space-y-2">
                 <Label htmlFor="create-amount">Stake (SUI)</Label>
                 <Input
                   id="create-amount"
