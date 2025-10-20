@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import TicTacToe from "./pages/TicTacToe";
+import WaitingRoom from "./pages/WaitingRoom";
 import Layout from "@/components/layout/Layout";
 import {
   SuiClientProvider,
