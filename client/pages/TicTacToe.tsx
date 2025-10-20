@@ -42,6 +42,10 @@ export default function TicTacToePage() {
       toast({ title: "Connect your wallet first" });
       return;
     }
+    if (!createName.trim()) {
+      toast({ title: "Enter a room name" });
+      return;
+    }
     const amt = parseSui(createAmount);
     if (amt == null) {
       toast({ title: "Enter a valid SUI amount (> 0)" });
