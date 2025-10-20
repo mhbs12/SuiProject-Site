@@ -91,14 +91,11 @@ export default function TicTacToePage() {
       return;
     }
     const amt = parseSui(joinAmount);
-    if (amt == null || !joinId.trim()) {
-      toast({ title: "Enter a valid room ID and SUI amount" });
+    if (amt == null || !joinName.trim()) {
+      toast({ title: "Enter a room name and SUI amount" });
       return;
     }
-    toast({
-      title: "Joining room",
-      description: `ID: ${joinId} • Stake: ${amt} SUI`,
-    });
+    toast({ title: "Joining room", description: `Room: ${joinName} • Stake: ${amt} SUI` });
   };
 
   return (
