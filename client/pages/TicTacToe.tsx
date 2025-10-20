@@ -55,7 +55,7 @@ export default function TicTacToePage() {
       const tx = new Transaction();
       const [stakeCoin] = tx.splitCoins(tx.gas, [mist]);
       tx.moveCall({
-        target: `${pkg}::ttt::start_bttt`,
+        target: `${pkg}::ttt::create_bttt`,
         arguments: [stakeCoin, tx.pure(mist), tx.object(playerRegistry)],
       });
       const res = await signAndExecute({ transaction: tx });
