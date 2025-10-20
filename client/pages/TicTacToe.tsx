@@ -151,17 +151,12 @@ export default function TicTacToePage() {
           <div className="rounded-2xl border border-border bg-card/60 p-6 backdrop-blur">
             <h2 className="text-lg font-semibold">Join room</h2>
             <p className="mt-1 text-sm text-muted-foreground">
-              Enter the room ID and your matching stake.
+              Enter the room name and your matching stake.
             </p>
             <div className="mt-4 space-y-3">
               <div className="space-y-2">
-                <Label htmlFor="room-id">Room ID</Label>
-                <Input
-                  id="room-id"
-                  placeholder="e.g. ab12cd34"
-                  value={joinId}
-                  onChange={(e) => setJoinId(e.target.value)}
-                />
+                <Label htmlFor="room-name">Room name</Label>
+                <Input id="room-name" placeholder="e.g. pro-match-1" value={joinName} onChange={(e) => setJoinName(e.target.value)} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="join-amount">Stake (SUI)</Label>
@@ -172,6 +167,10 @@ export default function TicTacToePage() {
                   value={joinAmount}
                   onChange={(e) => setJoinAmount(e.target.value)}
                 />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="room-id">Room ID (optional)</Label>
+                <Input id="room-id" placeholder="tx digest or object id" value={joinId} onChange={(e) => setJoinId(e.target.value)} />
               </div>
               <Button onClick={onJoin} className="w-full" variant="secondary">
                 Join Room
