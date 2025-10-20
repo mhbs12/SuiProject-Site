@@ -22,7 +22,9 @@ function parseSui(value: string) {
 export default function TicTacToePage() {
   const account = useCurrentAccount();
   const connected = Boolean(account?.address);
+  const navigate = useNavigate();
 
+  const [createName, setCreateName] = useState("");
   const [createAmount, setCreateAmount] = useState("");
   const { mutateAsync: signAndExecute } = useSignAndExecuteTransaction();
   const { network } = useSuiClientContext();
