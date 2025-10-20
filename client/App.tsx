@@ -61,6 +61,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/tictactoe" element={<TicTacToe />} />
+                <Route path="/tictactoe/wait/:id" element={<WaitingRoom />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Layout>
