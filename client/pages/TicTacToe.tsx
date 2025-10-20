@@ -95,7 +95,10 @@ export default function TicTacToePage() {
       toast({ title: "Enter a room name and SUI amount" });
       return;
     }
-    toast({ title: "Joining room", description: `Room: ${joinName} • Stake: ${amt} SUI` });
+    toast({
+      title: "Joining room",
+      description: `Room: ${joinName} • Stake: ${amt} SUI`,
+    });
   };
 
   return (
@@ -125,7 +128,12 @@ export default function TicTacToePage() {
             <div className="mt-4 space-y-3">
               <div className="space-y-2">
                 <Label htmlFor="create-name">Room name</Label>
-                <Input id="create-name" placeholder="e.g. pro-match-1" value={createName} onChange={(e) => setCreateName(e.target.value)} />
+                <Input
+                  id="create-name"
+                  placeholder="e.g. pro-match-1"
+                  value={createName}
+                  onChange={(e) => setCreateName(e.target.value)}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="create-amount">Stake (SUI)</Label>
@@ -156,7 +164,12 @@ export default function TicTacToePage() {
             <div className="mt-4 space-y-3">
               <div className="space-y-2">
                 <Label htmlFor="room-name">Room name</Label>
-                <Input id="room-name" placeholder="e.g. pro-match-1" value={joinName} onChange={(e) => setJoinName(e.target.value)} />
+                <Input
+                  id="room-name"
+                  placeholder="e.g. pro-match-1"
+                  value={joinName}
+                  onChange={(e) => setJoinName(e.target.value)}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="join-amount">Stake (SUI)</Label>
@@ -170,7 +183,12 @@ export default function TicTacToePage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="room-id">Room ID (optional)</Label>
-                <Input id="room-id" placeholder="tx digest or object id" value={joinId} onChange={(e) => setJoinId(e.target.value)} />
+                <Input
+                  id="room-id"
+                  placeholder="tx digest or object id"
+                  value={joinId}
+                  onChange={(e) => setJoinId(e.target.value)}
+                />
               </div>
               <Button onClick={onJoin} className="w-full" variant="secondary">
                 Join Room
@@ -185,19 +203,42 @@ export default function TicTacToePage() {
         </div>
         <div className="mt-10 rounded-2xl border border-border bg-card/60 p-6 backdrop-blur">
           <h2 className="text-lg font-semibold">Available rooms</h2>
-          <p className="mt-1 text-sm text-muted-foreground">Recently created rooms on this device for {network}.</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Recently created rooms on this device for {network}.
+          </p>
           <div className="mt-4 grid gap-3">
             {rooms.length === 0 && (
-              <p className="text-sm text-muted-foreground">No rooms yet. Create one to get started.</p>
+              <p className="text-sm text-muted-foreground">
+                No rooms yet. Create one to get started.
+              </p>
             )}
             {rooms.map((r) => (
-              <div key={r.id} className="flex items-center justify-between rounded-md border border-border/60 bg-background/60 p-3">
+              <div
+                key={r.id}
+                className="flex items-center justify-between rounded-md border border-border/60 bg-background/60 p-3"
+              >
                 <div className="min-w-0">
-                  <p className="truncate font-medium text-foreground">{r.name}</p>
-                  <p className="truncate text-xs text-muted-foreground">Stake: {(Number(r.stakeMist) / 1e9).toLocaleString(undefined,{maximumFractionDigits:4})} SUI • ID: <code className="font-mono">{r.id}</code></p>
+                  <p className="truncate font-medium text-foreground">
+                    {r.name}
+                  </p>
+                  <p className="truncate text-xs text-muted-foreground">
+                    Stake:{" "}
+                    {(Number(r.stakeMist) / 1e9).toLocaleString(undefined, {
+                      maximumFractionDigits: 4,
+                    })}{" "}
+                    SUI • ID: <code className="font-mono">{r.id}</code>
+                  </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Button size="sm" variant="ghost" onClick={() => navigate(`/tictactoe/wait/${encodeURIComponent(r.id)}`)}>Open</Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() =>
+                      navigate(`/tictactoe/wait/${encodeURIComponent(r.id)}`)
+                    }
+                  >
+                    Open
+                  </Button>
                 </div>
               </div>
             ))}

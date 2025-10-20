@@ -34,6 +34,9 @@ export function addRoom(network: NetworkName, room: RoomInfo) {
   saveRooms(network, rooms);
 }
 
-export function getRoomById(network: NetworkName, id: string): RoomInfo | undefined {
+export function getRoomById(
+  network: NetworkName,
+  id: string,
+): RoomInfo | undefined {
   return getRooms(network).find((r) => r.id === id);
 }

@@ -16,16 +16,35 @@ export default function WaitingRoom() {
           <h1 className="text-2xl font-bold">Waiting for an opponent…</h1>
           {room ? (
             <p className="mt-2 text-sm text-muted-foreground">
-              Room <span className="font-medium text-foreground">{room.name}</span> • Stake {(Number(room.stakeMist)/1e9).toLocaleString(undefined,{maximumFractionDigits:4})} SUI
+              Room{" "}
+              <span className="font-medium text-foreground">{room.name}</span> •
+              Stake{" "}
+              {(Number(room.stakeMist) / 1e9).toLocaleString(undefined, {
+                maximumFractionDigits: 4,
+              })}{" "}
+              SUI
             </p>
           ) : (
             <p className="mt-2 text-sm text-muted-foreground">Room: {id}</p>
           )}
           <div className="mt-6 flex items-center justify-center gap-3">
             <Button asChild variant="secondary">
-              <a href={typeof window !== 'undefined' ? window.location.href : '#'} target="_blank" rel="noreferrer">Share link</a>
+              <a
+                href={
+                  typeof window !== "undefined" ? window.location.href : "#"
+                }
+                target="_blank"
+                rel="noreferrer"
+              >
+                Share link
+              </a>
             </Button>
-            <Link to="/tictactoe" className="text-sm text-foreground/70 hover:text-primary">Back</Link>
+            <Link
+              to="/tictactoe"
+              className="text-sm text-foreground/70 hover:text-primary"
+            >
+              Back
+            </Link>
           </div>
         </div>
       </div>
